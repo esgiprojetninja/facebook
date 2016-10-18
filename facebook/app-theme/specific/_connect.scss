@@ -1,0 +1,94 @@
+/** Wrapper **/
+.connect-wrapper{
+  background-image:url(connectbg.jpg);
+}
+
+/** Container **/
+.connect-container{
+
+  /** Module connect **/
+  .connect{
+    background-color: #ffffff;
+    padding: 15px 20px 20px 20px;
+    border: 1px solid #e7eaec;
+    border-radius: 3px;
+
+    /** Header **/
+    .connect-header{
+      .svg-container{
+        margin:0 auto;
+
+        .svg-canvas path{
+          transition: fill-opacity 2s;
+        }
+      }
+    }
+
+    /** Input **/
+    .connect-input{
+      input{
+        display:block;
+        margin: 10px 0;
+        padding:5px 0;
+        width:100%;
+      }
+
+      button{
+        width:100%;
+      }
+    }
+
+    /** Hr seperator **/
+    .connect-separator{
+      margin:10px 0;
+      display:block;
+      text-align:center;
+      overflow:hidden;
+      white-space:nowrap;
+
+      span{
+        position:relative;
+        display:inline-block;
+      }
+
+      span:before, span:after{
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        height: 1px;
+        background: rgba(41, 41, 41, 0.39);
+      }
+
+      span:before{
+        right:100%;
+        margin-right:15px;
+      }
+
+      span:after{
+        left:100%;
+        margin-left:15px;
+      }
+    }
+
+    /** Social **/
+    .connect-social{
+      button{
+        width:100%;
+        margin-bottom:10px;
+      }
+
+      i{
+        float:left;
+        line-height:20px;
+      }
+    }
+
+    /** Connect Bottom **/
+    .connect-bottom{
+      .connect-bottom-forgot{
+        float:right;
+      }
+    }
+  }
+}

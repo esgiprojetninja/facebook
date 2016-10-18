@@ -1,0 +1,54 @@
+.svg-canvas path{
+  fill-opacity:0;
+  stroke:$title-color;
+  stroke-width:1.5;
+}
+
+.svg-canvas, .svg-container{
+  height:120px;
+  width:100%;
+  position:relative;
+
+  .canvas-logo{
+    width:90px;
+  }
+
+  .canvas-title{
+    width:160px;
+  }
+}
+
+.svg-canvas path{
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw 5s linear forwards;
+  -webkit-animation: draw 8s linear forwards;
+  -moz-animation: draw 8s linear forwards;
+  -o-animation: draw 8s linear forwards;
+  font-weight: bold;
+  font-family: Amatic SC;
+  -inkscape-font-specification: Amatic SC Bold;
+}
+
+
+@keyframes draw {
+to {
+    stroke-dashoffset: 0;
+    }
+}
+@-webkit-keyframes draw {
+to {
+    stroke-dashoffset: 0;
+    }
+}
+
+@-moz-keyframes draw {
+to {
+    stroke-dashoffset: 0;
+    }
+}
+@-o-keyframes draw {
+to {
+    stroke-dashoffset: 0;
+    }
+}

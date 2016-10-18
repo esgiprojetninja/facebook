@@ -1,0 +1,38 @@
+/** Button Overall **/
+.btn{
+  border-radius:0;
+}
+
+/** Button Custom **/
+.ninja-btn-primary{
+  background-color: $ninja-btn-primary;
+  color:#ffffff;
+
+  &:hover{
+    color:#ffffff;
+  }
+}
+
+.ninja-btn-facebook{
+  border:1px solid $ninja-btn-facebook;
+  background-color:transparent;
+  color: $ninja-btn-facebook;
+  transition: all .3s;
+
+  &:hover{
+    background-color: $ninja-btn-facebook;
+    color:#ffffff;
+  }
+}
+
+.ninja-btn-google{
+  border:1px solid $ninja-btn-google;
+  background-color: transparent;
+  color:$ninja-btn-google;
+  transition: all .3s;
+
+  &:hover{
+    background-color: $ninja-btn-google;
+    color:#ffffff;
+  }
+}

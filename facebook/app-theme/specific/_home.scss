@@ -1,0 +1,24 @@
+.first-section{
+  color:$primary-color;
+  text-align: center;
+
+  .first-section-title{
+    letter-spacing: 2px;
+    font-size:45px;
+    text-transform:uppercase;
+  }
+}
+
+.section-wrapper{
+  padding:44px;
+}
+
+.section-border{
+  padding:44px;
+  border:1px solid $primary-color;
+}
+
+.home-btn-ctn{
+  margin-top:30px;
+}
+

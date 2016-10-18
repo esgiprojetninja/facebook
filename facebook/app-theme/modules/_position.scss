@@ -1,0 +1,25 @@
+//Position vertical au milieu
+.align{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+//Position vertical fin
+.align-end{
+  align-self: flex-end;
+}
+
+//Position vertical début
+.align-start{
+  align-self: flex-start;
+}
+
+//Normal mode
+.absolute{
+  position:absolute;
+}
+
+.relative{
+  position: relative;
+}
