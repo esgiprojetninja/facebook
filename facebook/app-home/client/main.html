@@ -7,7 +7,7 @@
   <div class="connect-wrapper full-height full-width align">
 
     <!-- Container -->
-    <div class="animated fadeInLeft connect-container col-md-4">
+    <div class="animated fadeInLeft connect-container col-md-4 col-sm-6 col-xs-12">
 
       <!-- Module Connect -->
       <div class="connect">
@@ -48,9 +48,17 @@
 
         <!-- Input -->
         <div class="connect-input">
-          <input type="text" placeholder="E-mail">
-          <input type="password" placeholder="Mot de passe">
-          <button class="btn ninja-btn-primary">Je me connecte</button>
+          <div class="ninja-input">
+            <input type="text" class="ninja-input-text" required/>
+            <span class="ninja-input-label">E-mail</span>
+          </div>
+
+          <div class="ninja-input">
+            <input type="password" class="ninja-input-text" required/>
+            <span class="ninja-input-label">Mot de passe</span>
+          </div>
+
+          <button class="btn ninja-btn-primary ninja-input-connect">Je me connecte</button>
         </div>
 
         <!-- Hr Line -->

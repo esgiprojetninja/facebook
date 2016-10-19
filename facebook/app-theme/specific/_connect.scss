@@ -1,6 +1,7 @@
 /** Wrapper **/
 .connect-wrapper{
-  background-image:url(connectbg.jpg);
+  background-image:url(connectbgblack.jpg);
+  background-size:cover;
 }
 
 /** Container **/
@@ -35,6 +36,10 @@
 
       button{
         width:100%;
+      }
+
+      .ninja-input-connect{
+        margin:10px 0;
       }
     }
 

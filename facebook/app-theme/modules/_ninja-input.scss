@@ -1,0 +1,42 @@
+.ninja-input {
+  position:relative;
+
+  input{
+    border:0;
+    border-bottom:1px solid #000000;
+
+    &:focus{
+      border-bottom:1px solid $ninja-btn-google;
+    }
+  }
+
+  .ninja-input-text:focus ~ .ninja-input-label,
+  .ninja-input-text:not(:focus):valid ~ .ninja-input-label{
+    top: -5px;
+    bottom: 10px;
+    font-size: 11px;
+    opacity: 1;
+  }
+
+  .ninja-input-text:focus ~ .ninja-input-label{
+    color: $ninja-btn-google; 
+  }
+
+  .ninja-input-text {
+    font-size: 14px;
+    width: 200px;
+    height: 35px;
+  }
+
+  .ninja-input-label {
+    color: darkgrey;
+    position: absolute;
+    pointer-events: none;
+    top:6.5px;
+    transition: 0.2s ease all;
+
+    &:not(:focus){
+      color:darkgrey;
+  }
+  }
+}
