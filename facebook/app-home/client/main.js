@@ -1,7 +1,7 @@
 import './main.html';
 
 Template.home.onCreated(function helloOnCreated() {
-
+    this.subscribe = new ReactiveVar(false);
 });
 
 Template.home.rendered = function(){
@@ -9,10 +9,20 @@ Template.home.rendered = function(){
     connectFront.title();
 };
 
-Template.home.helpers({
+Template.home.events({
+    'click #connect-bottom-subscribe'(event, template){
+        event.preventDefault();
 
+        var subscribe = template.subscribe.get();
+        template.subscribe.set(!subscribe);
+    }
 });
 
+Template.home.helpers({
+    isSubscribe : function(){
+        return Template.instance().subscribe.get();
+    }
+});
 
 var connectFront = {
     title: function () {

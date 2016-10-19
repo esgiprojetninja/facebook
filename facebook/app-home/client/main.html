@@ -4,10 +4,10 @@
 
 <template name="home">
 
-  <div class="connect-wrapper full-height full-width align">
+  <div class="connect-wrapper full-height full-width">
 
     <!-- Container -->
-    <div class="animated fadeInLeft connect-container col-md-4 col-sm-6 col-xs-12">
+    <div class="animated fadeInLeft connect-container col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
 
       <!-- Module Connect -->
       <div class="connect">
@@ -48,17 +48,22 @@
 
         <!-- Input -->
         <div class="connect-input">
-          <div class="ninja-input">
-            <input type="text" class="ninja-input-text" required/>
-            <span class="ninja-input-label">E-mail</span>
-          </div>
 
-          <div class="ninja-input">
-            <input type="password" class="ninja-input-text" required/>
-            <span class="ninja-input-label">Mot de passe</span>
-          </div>
+            {{#if isSubscribe}}
+                <!-- Subscribe -->
+                {{> subscribe}}
+            {{else}}
+                <!-- Login -->
+                {{> login}}
+            {{/if}}
 
-          <button class="btn ninja-btn-primary ninja-input-connect">Je me connecte</button>
+            {{#if isSubscribe}}
+                <!-- Subscribe -->
+                <button class="btn ninja-btn-primary ninja-input-connect" id="ninja-input-subscribe">Je m'inscris</button>
+            {{else}}
+                <!-- Login -->
+                <button class="btn ninja-btn-primary ninja-input-connect" id="ninja-input-login">Je me connecte</button>
+            {{/if}}
         </div>
 
         <!-- Hr Line -->
@@ -70,18 +75,31 @@
         <div class="connect-social">
           <button class="btn ninja-btn-facebook">
             <i class="fa fa-facebook" aria-hidden="true"></i>
-            Se connecter avec Facebook
+            {{#if isSubscribe}}
+              S'inscrire avec Facebook
+            {{else}}
+              Se connecter avec Facebook
+            {{/if}}
           </button>
           <button class="btn ninja-btn-google">
             <i class="fa fa-google" aria-hidden="true"></i>
-            Se connecter avec Google
+              {{#if isSubscribe}}
+                  S'inscrire avec Google
+              {{else}}
+                  Se connecter avec Google
+              {{/if}}
           </button>
         </div>
 
         <!-- Connect bottom -->
         <div class="connect-bottom">
-          <a href="/subscribe" class="connect-bottom-subsribe">S'inscrire</a>
-          <a href="/forgot" class="connect-bottom-forgot">J'ai oublié mon mot de passe</a>
+           {{#if isSubscribe}}
+               <a href="" class="connect-bottom-subsribe" id="connect-bottom-subscribe">Se connecter</a>
+               <a href="/forgot" class="connect-bottom-forgot" id="connect-bottom-cgu">CGU</a>
+           {{else}}
+               <a href="" class="connect-bottom-subsribe" id="connect-bottom-subscribe">S'inscrire</a>
+               <a href="/forgot" class="connect-bottom-forgot" id="connect-bottom-forgot">J'ai oublié mon mot de passe</a>
+           {{/if}}
         </div>
       </div>
     </div>

@@ -10,18 +10,6 @@
     }
   }
 
-  .ninja-input-text:focus ~ .ninja-input-label,
-  .ninja-input-text:not(:focus):valid ~ .ninja-input-label{
-    top: -5px;
-    bottom: 10px;
-    font-size: 11px;
-    opacity: 1;
-  }
-
-  .ninja-input-text:focus ~ .ninja-input-label{
-    color: $ninja-btn-google; 
-  }
-
   .ninja-input-text {
     font-size: 14px;
     width: 200px;
@@ -37,6 +25,19 @@
 
     &:not(:focus){
       color:darkgrey;
+    }
   }
+
+  .ninja-input-text:focus ~ .ninja-input-label,
+  .ninja-input-text:not(:focus):valid ~ .ninja-input-label{
+    top: -5px;
+    bottom: 10px;
+    font-size: 11px;
+    opacity: 1;
   }
+
+  .ninja-input-text:focus ~ .ninja-input-label{
+    color: $ninja-btn-google;
+  }
+
 }
