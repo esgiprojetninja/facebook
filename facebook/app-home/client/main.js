@@ -24,6 +24,7 @@ Template.home.helpers({
     }
 });
 
+/** Canvas animation **/
 var connectFront = {
     title: function () {
 
@@ -34,5 +35,6 @@ var connectFront = {
         }, 3000);
     }
 };
+
 
 

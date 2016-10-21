@@ -1,9 +1,49 @@
 /** Button Overall **/
 .btn{
   border-radius:0;
+  font-family:"Roboto";
+  font-size:9px;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing: 2px;
+  line-height:25px;
 }
 
 /** Button Custom **/
+.ninja-btn{
+  position:relative;
+
+  .ninja-btn-span{
+    transition:all .3s;
+  }
+
+  .ninja-btn-span.firstspan{
+    display:block;
+    opacity:1;
+  }
+
+  .ninja-btn-span.secondspan{
+    position:absolute;
+    left:0;
+    right:0;
+    margin:0 auto;
+    opacity:0;
+    transform:translateY(100%);
+  }
+
+  &:hover{
+    .ninja-btn-span.firstspan{
+      transform:translateY(-100%);
+      opacity:0;
+    }
+
+    .ninja-btn-span.secondspan{
+      transform:translateY(-100%);
+      opacity:1;
+    }
+  }
+}
+
 .ninja-btn-primary{
   background-color: $ninja-btn-primary;
   color:#ffffff;

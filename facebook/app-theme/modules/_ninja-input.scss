@@ -3,7 +3,7 @@
 
   input{
     border:0;
-    border-bottom:1px solid #000000;
+    border-bottom:1px solid rgba(41, 41, 41, 0.39);
 
     &:focus{
       border-bottom:1px solid $ninja-btn-google;
@@ -32,7 +32,7 @@
   .ninja-input-text:not(:focus):valid ~ .ninja-input-label{
     top: -5px;
     bottom: 10px;
-    font-size: 11px;
+    font-size: 10px;
     opacity: 1;
   }
 

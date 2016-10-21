@@ -59,10 +59,16 @@
 
             {{#if isSubscribe}}
                 <!-- Subscribe -->
-                <button class="btn ninja-btn-primary ninja-input-connect" id="ninja-input-subscribe">Je m'inscris</button>
+                <button class="btn ninja-btn ninja-btn-primary btn-margin" id="ninja-btn-subscribe">
+                    <span class="ninja-btn-span firstspan">Je m'inscris</span>
+                    <span class="ninja-btn-span secondspan">Je m'inscris</span>
+                </button>
             {{else}}
                 <!-- Login -->
-                <button class="btn ninja-btn-primary ninja-input-connect" id="ninja-input-login">Je me connecte</button>
+                <button class="btn ninja-btn ninja-btn-primary btn-margin" id="ninja-btn-login">
+                    <span class="ninja-btn-span firstspan">Je me connecte</span>
+                    <span class="ninja-btn-span secondspan">Je me connecte</span>
+                </button>
             {{/if}}
         </div>
 
@@ -73,20 +79,24 @@
 
         <!-- Social -->
         <div class="connect-social">
-          <button class="btn ninja-btn-facebook">
+          <button class="btn ninja-btn ninja-btn-facebook">
             <i class="fa fa-facebook" aria-hidden="true"></i>
             {{#if isSubscribe}}
-              S'inscrire avec Facebook
+                <span class="ninja-btn-span firstspan">S'inscrire avec Facebook</span>
+                <span class="ninja-btn-span secondspan">S'inscrire avec Facebook</span>
             {{else}}
-              Se connecter avec Facebook
+                <span class="ninja-btn-span firstspan">Se connecter avec Facebook</span>
+                <span class="ninja-btn-span secondspan">Se connecter avec Facebook</span>
             {{/if}}
           </button>
-          <button class="btn ninja-btn-google">
+          <button class="btn ninja-btn ninja-btn-google">
             <i class="fa fa-google" aria-hidden="true"></i>
               {{#if isSubscribe}}
-                  S'inscrire avec Google
+                  <span class="ninja-btn-span firstspan">S'inscrire avec Google</span>
+                  <span class="ninja-btn-span secondspan">S'inscrire avec Google</span>
               {{else}}
-                  Se connecter avec Google
+                  <span class="ninja-btn-span firstspan">Se connecter avec Google</span>
+                  <span class="ninja-btn-span secondspan">Se connecter avec Google</span>
               {{/if}}
           </button>
         </div>
