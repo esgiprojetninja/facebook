@@ -6,7 +6,8 @@ Template.home.onCreated(function helloOnCreated() {
 
 Template.home.rendered = function(){
     "use strict";
-    connectFront.title();
+    connectFront.init();
+    inputAnimation.init();
 };
 
 Template.home.events({
@@ -26,6 +27,9 @@ Template.home.helpers({
 
 /** Canvas animation **/
 var connectFront = {
+    init : function(){
+      connectFront.title();
+    },
     title: function () {
 
         setTimeout(function () {
@@ -36,5 +40,16 @@ var connectFront = {
     }
 };
 
+/** Input animation line **/
+var inputAnimation = {
+    init : function(){
+        inputAnimation.onFocus();
+    },
+    onFocus : function(){
+        jQuery(".ninja-input-text").on("focus", function(e){
+            jQuery(e.currentTarget).parent().animate({"border-color": "yellow"}, "slow");
+        });
+    }
+};
 
 
