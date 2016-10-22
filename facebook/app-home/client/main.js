@@ -8,6 +8,7 @@ Template.home.rendered = function(){
     "use strict";
     connectFront.init();
     inputAnimation.init();
+    cookieBar.init();
 };
 
 Template.home.events({
@@ -43,13 +44,40 @@ var connectFront = {
 /** Input animation line **/
 var inputAnimation = {
     init : function(){
+        inputAnimation.setNinjaInputText();
+
         inputAnimation.onFocus();
     },
+    setNinjaInputText : function(){
+        this._ninjaInputText = jQuery(".ninja-input-text");
+    },
+    getNinjaInputText : function(){
+        return this._ninjaInputText;
+    },
     onFocus : function(){
-        jQuery(".ninja-input-text").on("focus", function(e){
+        inputAnimation.getNinjaInputText().on("focus", function(e){
             jQuery(e.currentTarget).parent().animate({"border-color": "yellow"}, "slow");
         });
     }
 };
 
+/** Cookie bar **/
+var cookieBar = {
+    init : function(){
+        cookieBar.setCookieBar();
+
+        cookieBar.onClick();
+    },
+    setCookieBar : function(){
+        this._cookieBar = jQuery(".cookie-bar");
+    },
+    getCookieBar : function(){
+        return this._cookieBar;
+    },
+    onClick : function(){
+        cookieBar.getCookieBar().on("click", function(e){
+            jQuery(e.currentTarget).css({"transform" : "translateY(-100%)", "transition" : "all .3s"})
+        });
+    }
+};
 
