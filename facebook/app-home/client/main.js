@@ -7,7 +7,6 @@ Template.home.onCreated(function helloOnCreated() {
 Template.home.rendered = function(){
     "use strict";
     connectFront.init();
-    inputAnimation.init();
     cookieBar.init();
 };
 
@@ -41,25 +40,6 @@ var connectFront = {
     }
 };
 
-/** Input animation line **/
-var inputAnimation = {
-    init : function(){
-        inputAnimation.setNinjaInputText();
-
-        inputAnimation.onFocus();
-    },
-    setNinjaInputText : function(){
-        this._ninjaInputText = jQuery(".ninja-input-text");
-    },
-    getNinjaInputText : function(){
-        return this._ninjaInputText;
-    },
-    onFocus : function(){
-        inputAnimation.getNinjaInputText().on("focus", function(e){
-            jQuery(e.currentTarget).parent().animate({"border-color": "yellow"}, "slow");
-        });
-    }
-};
 
 /** Cookie bar **/
 var cookieBar = {
@@ -76,7 +56,7 @@ var cookieBar = {
     },
     onClick : function(){
         cookieBar.getCookieBar().on("click", function(e){
-            jQuery(e.currentTarget).css({"transform" : "translateY(-100%)", "transition" : "all .3s"})
+            jQuery(this).css({"transform" : "translateY(-100%)", "transition" : "all .3s"})
         });
     }
 };
