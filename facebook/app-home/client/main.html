@@ -4,6 +4,31 @@
 
 <template name="home">
 
+    <!-- Test Facebook -->
+    {{#if currentUser}}
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="border:0;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" style="text-align:center;">
+                        <img class="img-cover" src="">
+                        <span style="display:block;padding:10px 0;">Nom : {{currentUser.services.facebook.name}}</span>
+                        <span style="display:block;padding:10px 0;">Genre : {{currentUser.services.facebook.gender}}</span>
+                        <button style="margin-top:5px;" class="btn ninja-btn ninja-btn-facebook" id="facebook-logout">Logout</button>
+                    </div>
+                    <div class="modal-footer" style="border:0;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {{/if}}
+
   <div class="connect-wrapper full-height full-width">
 
     <!-- Container -->
@@ -78,7 +103,7 @@
 
         <!-- Social -->
         <div class="connect-social">
-          <button class="btn ninja-btn ninja-btn-facebook">
+          <button class="btn ninja-btn ninja-btn-facebook" id="facebook-login">
             <i class="fa fa-facebook" aria-hidden="true"></i>
             {{#if isSubscribe}}
                 <span class="ninja-btn-span firstspan">S'inscrire avec Facebook</span>
@@ -103,7 +128,7 @@
         <!-- Connect bottom -->
         <div class="connect-bottom">
            {{#if isSubscribe}}
-               <a href="" class="connect-bottom-subsribe" id="connect-bottom-subscribe">Se connecter</a>
+               <a href="" class="connect-bottom-subsribe" id="connect-bottom-login">Se connecter</a>
                <a href="/forgot" class="connect-bottom-forgot" id="connect-bottom-cgu">CGU</a>
            {{else}}
                <a href="" class="connect-bottom-subsribe" id="connect-bottom-subscribe">S'inscrire</a>

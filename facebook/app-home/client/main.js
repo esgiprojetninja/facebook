@@ -11,18 +11,49 @@ Template.home.rendered = function(){
 };
 
 Template.home.events({
+    'click #ninja-btn-login' : function(){
+        console.log("Login.");
+    },
     'click #connect-bottom-subscribe'(event, template){
         event.preventDefault();
 
         var subscribe = template.subscribe.get();
         template.subscribe.set(!subscribe);
+    },
+    'click #facebook-login': function(event) {
+        console.log("Facebook init.");
+
+        Meteor.loginWithFacebook({}, function(err){
+            if(err){
+                throw new Meteor.Error("Facebook login failed");
+            }else{
+                jQuery('#myModal').modal("show");
+            }
+        });
+    },
+    'click #facebook-logout': function(event) {
+        console.log("Facebook init.");
+
+        Meteor.logout(function(err){
+            if (err) {
+                throw new Meteor.Error("Facebook logout failed");
+            }
+        });
     }
 });
 
 Template.home.helpers({
-    isSubscribe : function(){
+    isSubscribe : function() {
         return Template.instance().subscribe.get();
     }
+    /*userImage: function(){
+        if(Meteor.user().services.facebook){
+            return ‘https://graph.facebook.com/’ + Meteor.user().services.facebook.id + ‘/picture/?type=small’;
+                } else {
+            return ‘http://placehold.it/40×40’;
+                }
+    }*/
+
 });
 
 /** Canvas animation **/
