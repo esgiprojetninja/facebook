@@ -1,6 +1,11 @@
 import './main.html';
+
 var d3 = require('d3');
 
+// Db on mongodb://127.0.0.1:3001/meteor
+// var db = new MongoInternals.RemoteCollectionDriver('mongodb://127.0.0.1:3001/meteor');
+
+// returns instance of Foo2
 Template.home.onCreated(function helloOnCreated() {
   this.subscribe = new ReactiveVar(false);
 });
@@ -10,6 +15,30 @@ Template.home.rendered = function(){
   connectFront.init();
   cookieBar.init();
   // d3Instance.init();
+
+  //Question 1 : Utilisateur 11
+
+  // var numberOfRelations = db.open('relations').find().count();
+  // var userRelations = db.open('relations').find().fetch();
+
+  Meteor.call('getRelations', function(error, result){
+    if(error){
+      alert('cant get relations db');
+    }else{
+      console.log('result', result);
+    }
+  });
+
+  var line1=[['2008-08-12 4:00PM',4], ['2008-09-12 4:00PM',6.5], ['2008-10-12 4:00PM',5.7], ['2008-11-12 4:00PM',9], ['2008-12-12 4:00PM',8.2]];
+  var plot1 = $.jqplot('chart1', [line1], {
+    title:'Default Date Axis',
+    axes:{
+        xaxis:{
+            renderer:$.jqplot.DateAxisRenderer
+        }
+    },
+    series:[{lineWidth:4, markerOptions:{style:'square'}}]
+  });
 };
 
 Template.datavizualisation.rendered = function() {
