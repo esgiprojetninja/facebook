@@ -1,76 +1,18 @@
 <head>
   <title style="text-transform:uppercase;">Datavizualisation TP</title>
-  <!-- <script type="text/javascript" src="externalLib/jquery.js"></script>
-  <script type="text/javascript" src="externalLib/jquery.jqplot.min.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.barRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.BezierCurveRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.blockRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.bubbleRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.canvasAxisLabelRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.canvasAxisTickRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.canvasOverlay.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.canvasTextRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/categoryAxis.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.ciParser.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.cursor.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.dateAxisRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.donutRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.dragable.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.enhancedLegendRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.enhancedPieLegendRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.funnelRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.highlighter.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.json2.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.logAxisRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.mekkoAxisRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.mekkoRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.meterGaugeRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.mobile.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.ohlcRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.pieRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.pointLabels.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.pyramidAxisRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.pyramidGridRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.pyramidRenderer.js"></script>
-  <script type="text/javascript" src="externalLib/jqplot.trendline.js"></script> -->
 </head>
 
 <template name="home">
-
-    <!-- Test Facebook -->
-    {{#if currentUser}}
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-sm">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header" style="border:0;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body" style="text-align:center;">
-                        <img class="img-cover" src="{{userImage}}">
-                        <span style="display:block;padding:10px 0;">Nom : {{currentUser.services.facebook.name}}</span>
-                        <span style="display:block;padding:10px 0;">Genre : {{currentUser.services.facebook.gender}}</span>
-                        <button style="margin-top:5px;" class="btn ninja-btn ninja-btn-facebook" id="facebook-logout">Logout</button>
-                    </div>
-                    <div class="modal-footer" style="border:0;">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    {{/if}}
 
   <div class="connect-wrapper full-height full-width">
 
     <!-- Container -->
     <div class="animated fadeInLeft connect-container full-width full-height align">
         <!-- Module Connect -->
-        <div class="connect col-md-4 col-sm-6">
+        <div class="connect col-md-6 col-sm-10">
 
         <!-- Header -->
-        <div class="connect-header">
+        <!-- <div class="connect-header">
           <div class="svg-container align">
             <svg class="svg-canvas canvas-logo">
               <path class="title"
@@ -101,10 +43,18 @@
                       id="path4732" />
             </svg>
           </div>
+        </div> -->
+
+        <div class="connect-header text-center">
+          <div id="chart1"></div>
         </div>
 
-        <div class="connect-header">
-          <div id="chart1"></div>
+        <div class="connect-header text-center">
+          <div id="chart2"></div>
+        </div>
+
+        <div class="connect-header text-center">
+          <svg id="chart3" width="960" height="500"></svg>
         </div>
 
         <!-- Input -->
