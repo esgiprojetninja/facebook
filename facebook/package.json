@@ -5,6 +5,8 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "as-jqplot": "^1.0.8",
+    "d3": "^4.9.1",
     "meteor-node-stubs": "~0.2.0"
   }
 }

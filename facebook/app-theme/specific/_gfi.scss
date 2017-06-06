@@ -1,0 +1,91 @@
+.gfi-container {
+
+
+  height: 100%;
+  background: url(pattern_background.png) repeat fixed;
+
+  .gfi-first-column {
+    height: 95%;
+    margin: 11px 0;
+  }
+
+  .gfi-column {
+    background: white;
+    border: solid 1px #292929;
+    height: 100%;
+    padding: 15px 0;
+
+    .gfi-column-title {
+      font-weight: 800;
+      display: block;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .gfi-column-content {
+      text-align: justify;
+      font-size: 11px;
+    }
+  }
+
+  .gfi-logo {
+    height: 180px;
+    padding: 10px;
+  }
+
+  .gfi-logo-main-wrapper {
+    background: white;
+    height: 250px;
+    margin-top: 20%;
+    position: relative;
+
+    .gfi-logo-main {
+      height: 350px;
+      padding: 10px;
+      position: absolute;
+      top: -124px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+    }
+
+    .gfi-btn-main {
+      position: absolute;
+      height: 250px;
+      bottom: -234px;
+      text-align: center;
+      right: 0;
+      left: 0;
+      margin: 0 auto;
+      width: 250px;
+
+      button {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .gfi-column-main {
+    background: url(main_background.png) no-repeat center center fixed;
+    height: 95%;
+  }
+}
+
+.gfi-column-wrapper {
+  margin: 25px 0;
+}
+
+.gfi-job {
+  background: grey;
+  color: white;
+  padding: 10px;
+}
+
+.gfi-job-nb {
+  padding: 10px;
+  background: $primary-color;
+  color: white;
+}
