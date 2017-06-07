@@ -2,21 +2,26 @@
 .connect-wrapper{
   background:url(connectbgblack.jpg) no-repeat fixed;
   background-size:cover;
+  padding: 100px 50px;
   overflow-y: auto;
 }
 
 /** Container **/
 .connect-container{
   /** Module connect **/
+  overflow: auto;
+
   .connect{
     margin:auto;
     background-color: #ffffff;
     padding: 15px 20px 20px 20px;
     border: 1px solid #e7eaec;
     border-radius: 3px;
-    
+
     /** Header **/
     .connect-header{
+      margin: 25px 10px;
+
       .svg-container{
         margin:0 auto;
 

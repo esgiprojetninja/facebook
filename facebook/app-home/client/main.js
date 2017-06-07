@@ -1,6 +1,7 @@
 import './main.html';
 
 var d3 = require('d3');
+var Highcharts = require('highcharts');
 
 Template.home.onCreated(function helloOnCreated() {
     this.subscribe = new ReactiveVar(false);
@@ -92,68 +93,72 @@ Template.home.rendered = function() {
         if (error) {
             alert('getMessagesUser is empty');
         } else {
-
             d3Chart3.init(response);
         }
     });
 
-    // d3Chart3.init();
+    // Question 4: a la place de 5 vous pouvez changer les id des utilisateurs
+
+    Meteor.call('getRelationsUser', 5, function(error, response) {
+        if (error) {
+            alert('getRelationsUser is empty');
+        } else {
+            // var idFriends = [];
+            var genderFriends = [];
+
+            for (var i = 0; i < response.length; i++) {
+
+                Meteor.call('getUtilisateursById', response[i].user2, function(errorUtilisateur, responseUtilisateur) {
+                    if (errorUtilisateur) {
+                        alert('getUtilisateursById is empty');
+                    } else {
+                        if (responseUtilisateur[0].sexe === 1) {
+                            genderFriends.push("male");
+                        } else  {
+                            genderFriends.push("female");
+                        }
+                        // genderFriends.push(responseUtilisateur[0].sexe);
+                    }
+
+                });
+            }
+
+            Array.prototype.numberOfOccurrences = function(n, cb) {
+                setTimeout(function()  {
+                    var count = 0;
+                    for (var m = 0; m < genderFriends.length; m++) {
+                        if (genderFriends[m] === n) {
+                            count++;
+                        }
+                    }
+                    cb(count);
+                }, 1000);
+            }
+
+            var friendsRatio = {};
+
+            genderFriends.numberOfOccurrences("male", function(resultMale)  {
+                friendsRatio.male = resultMale;
+            });
+
+            genderFriends.numberOfOccurrences("female", function(resultFemale)  {
+                friendsRatio.female = resultFemale;
+            });
+
+            setTimeout(function() {
+                friendsRatio.nb = genderFriends.length;
+
+                friendsRatio.malePercent = (friendsRatio.male * 100) / friendsRatio.nb;
+                friendsRatio.femalePercent = (friendsRatio.female * 100) / friendsRatio.nb;
+
+                chartq3.init(friendsRatio.malePercent, friendsRatio.femalePercent);
+
+            }, 2000);
 
 
+        }
+    });
 };
-
-Template.datavizualisation.rendered = function()  {
-    d3Instance.init();
-};
-
-// Template.home.events({
-//   'click #ninja-btn-login' : function(){
-//     console.log("Login.");
-//   },
-//   'click #connect-bottom-subscribe'(event, template){
-//     event.preventDefault();
-//
-//     var subscribe = template.subscribe.get();
-//     template.subscribe.set(!subscribe);
-//   },
-//   'click #facebook-login': function(event) {
-//     console.log("Facebook login.");
-//
-//     Meteor.loginWithFacebook({}, function(err){
-//       if(err){
-//         throw new Meteor.Error("Facebook login failed");
-//         jQuery('#myModal').modal("show");
-//       }else{
-//         jQuery('#myModal').modal("show");
-//       }
-//     });
-//   },
-//   'click #facebook-logout': function(event) {
-//     console.log("Facebook logout.");
-//
-//     Meteor.logout(function(err){
-//       if (err) {
-//         throw new Meteor.Error("Facebook logout failed");
-//         jQuery('#myModal').modal("hide");
-//       }else{
-//         jQuery('#myModal').modal("hide");
-//       }
-//     });
-//   }
-// });
-
-// Template.home.helpers({
-//   isSubscribe : function() {
-//     return Template.instance().subscribe.get();
-//   },
-//   userImage: function(){
-//     if(Meteor.user().services.facebook){
-//       return 'https://graph.facebook.com/' + Meteor.user().services.facebook.id + '/picture/?type=large';
-//     }else{
-//       return 'http://placehold.it/40×40';
-//     }
-//   }
-// });
 
 /** Canvas animation **/
 var connectFront = {
@@ -173,7 +178,7 @@ var connectFront = {
 var d3Chart3 = {
     init: function(data) {
 
-        var svg = d3.select("svg"),
+        var svg = d3.select("#chart3"),
             margin = {
                 top: 20,
                 right: 20,
@@ -189,60 +194,17 @@ var d3Chart3 = {
         var g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        x.domain(data.map(function(d) {
-          // if (error) throw error;
-
-            x.domain(data.map(function(d) {
-                return d.destinataire;
-            }));
-
-            d.frequency = 1;
-
-            console.log(d);
-
-            g.append("g")
-                .attr("class", "axis axis--x")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
-
-            g.append("g")
-                .attr("class", "axis axis--y")
-                .call(d3.axisLeft(y).ticks(10, "%"))
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", "0.71em")
-                .attr("text-anchor", "end")
-                .text("Frequency");
-
-            g.selectAll(".bar")
-                .data(data)
-                .enter().append("rect")
-                .attr("class", "bar")
-                .attr("x", function(d) {
-                    return x(d.destinataire);
-                })
-                .attr("y", function(d) {
-                    return y(d.frequency);
-                })
-                .attr("width", x.bandwidth())
-                .attr("height", function(d) {
-                    return height - y(d.frequency);
-                });
-        }));
-
-        // d3.tsv("data.tsv", function(d) {
-        //     d.frequency = +d.frequency;
-        //     return d;
-        // }, function(error, data) {
-        //     if (error) throw error;
+        // x.domain(data.map(function(d) {
+        //   // if (error) throw error;
         //
         //     x.domain(data.map(function(d) {
-        //         return d.letter;
+        //         console.log(d);
+        //         return d.destinataire;
         //     }));
-        //     y.domain([0, d3.max(data, function(d) {
-        //         return d.frequency;
-        //     })]);
+        //
+        //     d.frequency = 0.00772;
+        //
+        //     console.log(d);
         //
         //     g.append("g")
         //         .attr("class", "axis axis--x")
@@ -264,7 +226,7 @@ var d3Chart3 = {
         //         .enter().append("rect")
         //         .attr("class", "bar")
         //         .attr("x", function(d) {
-        //             return x(d.letter);
+        //             return x(d.destinataire);
         //         })
         //         .attr("y", function(d) {
         //             return y(d.frequency);
@@ -273,7 +235,51 @@ var d3Chart3 = {
         //         .attr("height", function(d) {
         //             return height - y(d.frequency);
         //         });
-        // });
+        // }));
+
+        d3.tsv("data.tsv", function(d) {
+            d.frequency = +d.frequency;
+            return d;
+        }, function(error, data) {
+            if (error) throw error;
+
+            x.domain(data.map(function(d) {
+                return d.letter;
+            }));
+            y.domain([0, d3.max(data, function(d) {
+                return d.frequency;
+            })]);
+
+            g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+
+            g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y).ticks(10, "%"))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("text-anchor", "end")
+                .text("Frequency");
+
+            g.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) {
+                    return x(d.letter);
+                })
+                .attr("y", function(d) {
+                    return y(d.frequency);
+                })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) {
+                    return height - y(d.frequency);
+                });
+        });
     }
 }
 
@@ -391,6 +397,52 @@ var cookieBar = {
     }
 };
 
+var chartq3 = {
+    init: function(malePercent, femalePercent)  {
+        Highcharts.chart('chart4', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Pourcentage d’amis masculin et féminin'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: "Pourcentage d\'amis"
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            series: [{
+                name: 'Sexe',
+                colorByPoint: true,
+                data: [{
+                    name: 'Homme',
+                    y: malePercent
+                }, {
+                    name: 'Femme',
+                    y: femalePercent
+                }]
+            }],
+        });
+    }
+};
+
 function compressArray(original) {
 
     var compressed = [];
@@ -404,6 +456,7 @@ function compressArray(original) {
         // loop over every element in the copy and see if it's the same
         for (var w = 0; w < copy.length; w++) {
             if (original[i] == copy[w]) {
+
                 // increase amount of times duplicate is found
                 myCount++;
                 // sets item to undefined
