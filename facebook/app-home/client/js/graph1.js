@@ -7,23 +7,38 @@ Template.graph1.rendered = function() {
   $.get(dataGouvApi, function(data) {
     if(data) {
       var rentreUniversitaireTotal = data.facet_groups.find(facetGroup => facetGroup.name === 'rentree_universitaire');
-      var rentreUniversitaireParRegion = data.facet_groups.find(facetGroup => facetGroup.name === 'geo_nom');
-      var rentreUniversitaireParDepartement = data.facet_groups.find(facetGroup => facetGroup.name === 'dep_id');
 
-      console.log('rentreUniversitaireTotal', rentreUniversitaireTotal);
-      console.log('rentreUniversitaireParRegion', rentreUniversitaireParRegion);
-      console.log('rentreUniversitaireParDepartement', rentreUniversitaireParDepartement);
-
+      var labelsTmp = [];
+      var dataSetsCountTmp = [];
       var labels = [];
       var dataSetsCount = [];
 
       rentreUniversitaireTotal.facets.forEach(function(value, key) {
-        labels.push(value.name);
+        labelsTmp.push(formatDate(value.name));
+        dataSetsCountTmp.push(value.count);
       });
 
-      rentreUniversitaireTotal.facets.forEach(function(value, key) {
-        dataSetsCount.push(value.count);
-      });
+      function formatDate (date) {
+        if(date) {
+          return Number(date.slice(0, 4)) +1;
+        }
+      }
+
+      function sortNumber(a,b) {
+        return a - b;
+      }
+
+      dataSetsCountTmp.sort(sortNumber);
+      labelsTmp.sort(sortNumber);
+      dataSetsCountTmp.join(",");
+      labelsTmp.join(",");
+
+      if(dataSetsCountTmp.length === 15 && labelsTmp.length === 15) {
+        for(var i = 5; i < dataSetsCountTmp.length; i++) {
+          labels.push(labelsTmp[i]);
+          dataSetsCount.push(dataSetsCountTmp[i]);
+        }
+      }
 
       var data = {
           labels: labels,
@@ -31,20 +46,28 @@ Template.graph1.rendered = function() {
               label: "Nombre d'étudiants rentrant dans l'enseignement supérieur",
               data: dataSetsCount,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 99, 132, 0.1)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 99, 132, 0.3)',
+                'rgba(255, 99, 132, 0.4)',
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(255, 99, 132, 0.9)',
+                'rgba(255, 99, 132, 1)'
               ],
               borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)'
               ],
               borderWidth: 1
           }]
