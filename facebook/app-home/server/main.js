@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { MongoInternals } from 'meteor/mongo';
 import { Mongo } from 'meteor/mongo';
+import { HTTP } from 'meteor/http';
 
 // La variable contenant la bdd Mongo sur le port 3001
 const db = new MongoInternals.RemoteCollectionDriver('mongodb://127.0.0.1:3001/meteor');
