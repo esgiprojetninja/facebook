@@ -1,0 +1,89 @@
+<head>
+  <title style="text-transform:uppercase;">Datavizualisation TP</title>
+</head>
+
+<template name="home">
+
+  <div class="connect-wrapper full-height full-width">
+
+    <!-- Container -->
+
+        {{#if isGraph1}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{> graph1}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if isGraph2}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{> graph2}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if isGraph3}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{> graph3}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if isGraph4}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{> graph4}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if isGraph5}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{> graph5}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if isMenu}}
+            <div class="animated fadeInLeft connect-container full-width full-height align">
+                <div class="connect col-md-8">
+                    {{>menu}}
+                </div>
+            </div>
+        {{/if}}
+
+        <!-- <div class="connect-header text-center">
+          <h4> Question 1 </h4>
+          <div id="chart1"></div>
+        </div>
+
+        <div class="connect-header text-center">
+          <h4> Question 2 </h4>
+          <div id="chart2"></div>
+        </div>
+
+        <div class="connect-header text-center">
+          <h4> Question 3 </h4>
+          <svg id="chart3" width="960" height="500"></svg>
+        </div>
+
+        <div class="connect-header text-center">
+          <h4> Question 4 </h4>
+          <div id="chart4" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div> -->
+
+        <!-- Input -->
+
+
+        <!-- Social -->
+
+    <!-- Cookie -->
+    <div class="cookie-bar">
+        En poursuivant votre navigation sur Ninja, vous acceptez l'utilisation de cookies dans le but de vous offrir l'expérience de navigation la plus optimale.
+    </div>
+  </div>
+</template>
