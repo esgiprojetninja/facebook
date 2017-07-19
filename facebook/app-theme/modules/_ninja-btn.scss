@@ -8,12 +8,21 @@
   letter-spacing: 2px;
   line-height:25px;
   margin: 10px 0;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 30px;
 }
 
 /** Button Custom **/
 .ninja-btn{
   position:relative;
   overflow:hidden;
+
+  .btn-icon{
+    height: 22px;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
 
   .ninja-btn-span{
     transition:all .3s;

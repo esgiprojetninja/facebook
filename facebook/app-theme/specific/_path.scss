@@ -1,7 +1,8 @@
 .svg-canvas path{
   fill-opacity:0;
-  stroke:$title-color;
+  stroke:white;
   stroke-width:1.5;
+  transition: all 1s;
 }
 
 .svg-canvas, .svg-container{
@@ -21,10 +22,10 @@
 .svg-canvas path{
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  animation: draw 5s linear forwards;
-  -webkit-animation: draw 8s linear forwards;
-  -moz-animation: draw 8s linear forwards;
-  -o-animation: draw 8s linear forwards;
+  animation: draw 4s linear forwards;
+  -webkit-animation: draw 4s linear forwards;
+  -moz-animation: draw 4s linear forwards;
+  -o-animation: draw 4s linear forwards;
   font-weight: bold;
   font-family: Amatic SC;
   -inkscape-font-specification: Amatic SC Bold;

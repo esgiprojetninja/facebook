@@ -5,6 +5,9 @@ import { HTTP } from 'meteor/http';
 
 // La variable contenant la bdd Mongo sur le port 3001
 const db = new MongoInternals.RemoteCollectionDriver('mongodb://127.0.0.1:3001/meteor');
+const studentCollection = db.open('student');
+const teacherCollection = db.open('teacher');
+const othersCollection = db.open('others');
 
 // Au démarage de Meteor on va exécuter des fonctions pour récupérer les données dans la bdd
 Meteor.startup(() => {
@@ -13,74 +16,35 @@ Meteor.startup(() => {
   Meteor.methods({
 
     // Méthode Get de chaques collections
-	  getRelations: function () {
-      var numberOfRelations = db.open('relations').find().count();
-      var userRelations = db.open('relations').find().fetch();
+    addStudentCount: function() {
+     var currentStudentCount = studentCollection.find().fetch()[0].count;
 
-	    return userRelations;
-	  },
-
-    getRelationsUser: function(number) {
-      var numberOfRelations = db.open('relations').find().count();
-      var user = db.open('relations').find({user1: number}).fetch();
-
-      return user;
+     studentCollection.update({"name" : "studentCount"}, { $set : { "count" : currentStudentCount + 1}});
     },
 
-    getNotations: function () {
-      var numberOfNotations = db.open('notations').find().count();
-      var userNotations = db.open('notations').find().fetch();
+    addTeacherCount: function() {
+      var currentTeacherCount = teacherCollection.find().fetch()[0].count;
 
-      return userNotations;
+      teacherCollection.update({"name" : "teacherCount"}, { $set : { "count" : currentTeacherCount + 1}});
     },
 
-    getNotationsUser: function(number) {
-      var numberOfNotations = db.open('notations').find().count();
-      var user = db.open('notations').find({noteur: number}).fetch();
+    addOthersCount: function() {
+      var currentOthersCount = othersCollection.find().fetch()[0].count;
 
-      return user;
+      othersCollection.update({"name" : "othersCount"}, { $set : { "count" : currentOthersCount + 1}});
     },
 
-    getMessages: function () {
-      var numberOfMessages = db.open('messages').find().count();
-      var userMessages = db.open('messages').find().fetch();
-
-      return userMessages;
+    getStudentCount: function() {
+      return studentCollection.find().fetch()[0];
     },
 
-    getMessagesUser: function(number) {
-      var numberOfMessages = db.open('messages').find().count();
-      var user = db.open('messages').find({emetteur: number}).fetch();
-
-      return user;
+    getTeacherCount: function() {
+      return teacherCollection.find().fetch()[0];
     },
 
-    getPhotos: function () {
-      var numberOfPhotos = db.open('photos').find().count();
-      var userPhotos = db.open('photos').find().fetch();
-
-      return userPhotos;
-    },
-
-    getStatus: function () {
-      var numberOfStatus = db.open('status').find().count();
-      var userStatus = db.open('status').find().fetch();
-
-      return userStatus;
-    },
-
-    getUtilisateurs: function () {
-      var numberOfUtilisateurs = db.open('utilisateurs').find().count();
-      var userUtilisateurs = db.open('utilisateurs').find().fetch();
-
-      return userUtilisateurs;
-    },
-
-    getUtilisateursById: function (id) {
-      var numberOfUtilisateurs = db.open('utilisateurs').find().count();
-      var user = db.open('utilisateurs').find({id: id}).fetch();
-
-      return user;
+    getOthersCount: function() {
+      return othersCollection.find().fetch()[0];
     }
+
   });
 });
