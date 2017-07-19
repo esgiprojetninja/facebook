@@ -44,6 +44,16 @@ Meteor.startup(() => {
 
     getOthersCount: function() {
       return othersCollection.find().fetch()[0];
+    },
+
+    getAllCollectionsCount: function() {
+      var allCount = {};
+
+      allCount.student = studentCollection.find().fetch()[0].count;
+      allCount.teacher = teacherCollection.find().fetch()[0].count;
+      allCount.others = othersCollection.find().fetch()[0].count;
+
+      return allCount;
     }
 
   });

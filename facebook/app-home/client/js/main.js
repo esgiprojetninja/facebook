@@ -3,9 +3,9 @@ import '../view/main.html';
 var Chart = require('chart.js');
 
 Template.home.onCreated(function helloOnCreated() {
-    this.subscribe = new ReactiveVar(false);
-    this.menu = new ReactiveVar(true);
     this.homeselect = new ReactiveVar(true);
+    this.subscribe = new ReactiveVar(false);
+    this.menu = new ReactiveVar(false);
     this.graph1view = new ReactiveVar(false);
     this.graph2view= new ReactiveVar(false);
     this.graph3view = new ReactiveVar(false);
@@ -80,12 +80,21 @@ Template.home.events({
     },
     'click #student-load' : function(event, template) {
       event.preventDefault();
+      Meteor.call('addStudentCount');
+      template.homeselect.set(false);
+      template.menu.set(true);
     },
     'click #teacher-load' : function(event, template) {
       event.preventDefault();
+      Meteor.call('addTeacherCount');
+      template.homeselect.set(false);
+      template.menu.set(true);
     },
-    'click #other-load' : function(event, template) {
+    'click #others-load' : function(event, template) {
       event.preventDefault();
+      Meteor.call('addOthersCount');
+      template.homeselect.set(false);
+      template.menu.set(true);
     }
 });
 
@@ -93,15 +102,6 @@ Template.home.rendered = function() {
     "use strict";
     connectFront.init();
     cookieBar.init();
-
-    // Meteor.call('addStudentCount');
-    // Meteor.call('getStudentCount', function(error, response) {
-    //   if(error) {
-    //     console.log('No student');
-    //   } else {
-    //     console.log('response', response);
-    //   }
-    // });
 };
 
 /** Canvas animation **/
