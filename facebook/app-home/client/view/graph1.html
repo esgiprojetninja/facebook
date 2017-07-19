@@ -1,8 +1,18 @@
 <template name="graph1">
     <canvas id="graph1chart"></canvas>
 
-    <button class="btn ninja-btn ninja-btn-primary btn-margin full-width back-to-menu">
-        <span class="ninja-btn-span firstspan">Retour</span>
-        <span class="ninja-btn-span secondspan">Retour</span>
-    </button>
+    <div class="text-center" style="margin: 20px 0;">
+      <iframe src="/graph1"></iframe>
+    </div>
+
+    <div class="text-center">
+      <button class="btn ninja-btn ninja-btn-primary btn-margin copy-iframe btn-copy">
+          <span class="ninja-btn-span firstspan">Copier l'iframe</span>
+          <span class="ninja-btn-span secondspan">Copier l'iframe</span>
+      </button>
+      <button class="btn ninja-btn ninja-btn-primary btn-margin back-to-menu">
+          <span class="ninja-btn-span firstspan">Retour</span>
+          <span class="ninja-btn-span secondspan">Retour</span>
+      </button>
+    </div>
 </template>

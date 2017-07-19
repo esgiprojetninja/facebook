@@ -1,5 +1,6 @@
 import '../view/main.html';
 
+var Copy = require('copy-to-clipboard');
 var Chart = require('chart.js');
 
 Template.home.onCreated(function helloOnCreated() {
@@ -142,6 +143,10 @@ var cookieBar = {
     }
 };
 
+function copyOnClick(txt) {
+  Copy(text);
+}
+
 function compressArray(original) {
 
     var compressed = [];
@@ -172,4 +177,4 @@ function compressArray(original) {
     }
 
     return compressed;
-};
+}

@@ -6,8 +6,10 @@
   },
   "dependencies": {
     "chart.js": "^2.6.0",
+    "copy-to-clipboard": "^3.0.6",
     "d3": "^4.9.1",
     "highcharts": "^5.0.12",
+    "iframe": "^1.0.0",
     "meteor-node-stubs": "~0.2.0"
   }
 }

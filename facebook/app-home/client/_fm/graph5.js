@@ -1,14 +1,6 @@
-import '../view/graph5.html';
-var Copy = require('copy-to-clipboard');
+import '../view/_fm/graph5.html';
 
-Template.graph5.events({
-  'click .copy-iframe' : function(event) {
-    event.preventDefault();
-    Copy('<iframe src="http://localhost:3000/graph5"></iframe>');
-  }
-});
-
-Template.graph5.rendered = function() {
+Template.iframeG5.rendered = function() {
 
   Meteor.call('getAllCollectionsCount', function(error, response) {
     if(error) {

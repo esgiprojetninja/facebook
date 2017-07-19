@@ -67,6 +67,18 @@
   }
 }
 
+.btn-copy{
+  border:1px solid $ninja-btn-google;
+  background-color:transparent;
+  color: $ninja-btn-google;
+  transition: all .3s;
+
+  &:hover{
+    background-color: $ninja-btn-google;
+    color:#ffffff;
+  }
+}
+
 .ninja-btn-facebook{
   border:1px solid $ninja-btn-facebook;
   background-color:transparent;

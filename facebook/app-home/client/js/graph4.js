@@ -1,6 +1,14 @@
 import '../view/graph4.html';
+var Copy = require('copy-to-clipboard');
 
 const dataGouvApi = "https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-atlas_regional-effectifs-d-etudiants-inscrits&facet=rentree_universitaire&facet=niveau_geographique&facet=geo_nom&facet=rgp_formations_ou_etablissements&facet=secteur_de_l_etablissement&facet=sexe_de_l_etudiant&facet=a_des_effectifs_dut&facet=a_des_effectifs_ing&facet=donnees_diffusables&facet=niveau_geo&facet=geo_id&facet=reg_id&facet=aca_id&facet=dep_id&facet=uucr_id&apiKey=81e8ebadf857bcb9dbbc88c37a0dedbb775f60aab10f2c646d49b955";
+
+Template.graph4.events({
+  'click .copy-iframe' : function(event) {
+    event.preventDefault();
+    Copy('<iframe src="http://localhost:3000/graph4"></iframe>');
+  }
+});
 
 Template.graph4.rendered = function() {
 
