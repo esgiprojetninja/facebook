@@ -45,31 +45,8 @@ Template.graph1.rendered = function() {
           datasets: [{
               label: "Nombre d'étudiants rentrant dans l'enseignement supérieur",
               data: dataSetsCount,
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.1)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.3)',
-                'rgba(255, 99, 132, 0.4)',
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(255, 99, 132, 0.9)',
-                'rgba(255, 99, 132, 1)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)'
-              ],
-              borderWidth: 1
+              backgroundColor: 'transparent',
+              borderColor: '#04B4AE'
           }]
       };
 
@@ -77,14 +54,14 @@ Template.graph1.rendered = function() {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
           }
       };
 
       var myLineChart = new Chart(document.getElementById("graph1chart").getContext('2d'), {
-          type: 'bar',
+          type: 'line',
           data: data,
           options: options
       });
