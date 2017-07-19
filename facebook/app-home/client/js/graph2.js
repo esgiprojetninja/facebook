@@ -36,23 +36,14 @@ Template.graph2.rendered = function() {
           datasets: [{
               label: "Nombre d'étudiants disponnible par département",
               data: dataSetsCount
-          }]
-      };
-
-      var options = {
-          scales: {
-              xAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
+          }],
+          backgroundColor: "#04B4AE"
       };
 
       var myLineChart = new Chart(document.getElementById("graph2chart").getContext('2d'), {
           type: 'bar',
           data: data,
-          options: options
+          options: {}
       });
     }else {
       throw new Meteor.Error("dataGouvApi error");

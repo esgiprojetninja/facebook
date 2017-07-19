@@ -4,11 +4,9 @@ Template.graph5.rendered = function() {
 
   Meteor.call('getAllCollectionsCount', function(error, response) {
     if(error) {
-      console.log('getAllCollectionsCount is empty');
+      throw new Meteor.Error("Can't fetch data from db for all count");
     } else {
       var dataCount = [response.student, response.teacher, response.others];
-
-      console.log(dataCount);
 
       var data = {
           labels: ["Etudiants", "Professeurs", "Autres"],
