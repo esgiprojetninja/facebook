@@ -17,76 +17,29 @@ Template.graph1.rendered = function() {
     if(error) {
         throw new Meteor.Error("Can't fetch data from db for all count");
     } else {
-        console.log('resp', resp);
-    }
-  });
-
-  $.get(dataGouvApi, function(data) {
-    if(data) {
-      var rentreUniversitaireTotal = data.facet_groups.find(facetGroup => facetGroup.name === 'rentree_universitaire');
-
-      var labelsTmp = [];
-      var dataSetsCountTmp = [];
-      var labels = [];
-      var dataSetsCount = [];
-
-      rentreUniversitaireTotal.facets.forEach(function(value, key) {
-        labelsTmp.push(formatDate(value.name));
-        dataSetsCountTmp.push(value.count);
-      });
-
-      function formatDate (date) {
-        if(date) {
-          return Number(date.slice(0, 4)) +1;
-        }
-      }
-
-      function sortNumber(a,b) {
-        return a - b;
-      }
-
-      dataSetsCountTmp.sort(sortNumber);
-      labelsTmp.sort(sortNumber);
-      dataSetsCountTmp.join(",");
-      labelsTmp.join(",");
-
-      if(dataSetsCountTmp.length === 15 && labelsTmp.length === 15) {
-        for(var i = 5; i < dataSetsCountTmp.length; i++) {
-          labels.push(labelsTmp[i]);
-          dataSetsCount.push(dataSetsCountTmp[i]);
-        }
-      }
-
-      console.log('label', labels);
-      console.log('data', dataSetsCount);
+      var nonretweeted = resp.length;
+      var tweeted = 100-tweeted;
+      var dataSets = [];
+      dataSets.push(nonretweeted);
+      dataSets.push(tweeted);
 
       var data = {
-          labels: labels,
-          datasets: [{
-              label: "Nombre de retweet sur la recherche 'love'",
-              data: dataSetsCount,
-              backgroundColor: 'transparent',
-              borderColor: '#04B4AE'
-          }]
-      };
-
-      var options = {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:false
-                  }
-              }]
-          }
+        labels: ['Non-retweeted', 'Retweeted'],
+        datasets: [{
+            label: "Nombre mise en favoris des tweets sur la recherche 'love'",
+            data: dataSets,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 99, 132, 0.5)'
+            ]
+        }]
       };
 
       var myLineChart = new Chart(document.getElementById("graph1chart").getContext('2d'), {
-          type: 'line',
+          type: 'polarArea',
           data: data,
-          options: options
+          options: {}
       });
-    }else {
-      throw new Meteor.Error("dataGouvApi error");
     }
   });
 };

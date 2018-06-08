@@ -14,14 +14,14 @@ Template.graph3.rendered = function() {
     if(error) {
         throw new Meteor.Error("Can't fetch data from db for all count");
     } else {
-        var total = resp.length;
-        var nonfavoris = 100-total;
+        var nonretweeted = resp.length;
+        var tweeted = 100-tweeted;
         var dataSets = [];
-        dataSets.push(total);
-        dataSets.push(nonfavoris);
+        dataSets.push(nonretweeted);
+        dataSets.push(tweeted);
 
         var data = {
-          labels: ['Favoris', 'Non-favoris'],
+          labels: ['Non-Favoris', 'Favoris'],
           datasets: [{
               label: "Nombre mise en favoris des tweets sur la recherche 'love'",
               data: dataSets,
@@ -32,7 +32,7 @@ Template.graph3.rendered = function() {
           }]
         };
 
-        var myLineChart = new Chart(document.getElementById("graph3chart").getContext('2d'), {
+        var myLineChart = new Chart(document.getElementById("graph1chart").getContext('2d'), {
             type: 'polarArea',
             data: data,
             options: {}
