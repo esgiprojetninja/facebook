@@ -47,7 +47,7 @@ Meteor.startup(() => {
     },
 
     getRetweetedTweet: function() {
-      var fetched = tweetCollection.find({name: "tweet"}, {value: {$elemMatch: {retweeted: false}}}).fetch();
+      // var fetched = tweetCollection.find({name: "tweet"}, {value: {$elemMatch: {retweet_count: false}}}).fetch();
       return fetched;
     },
 
@@ -57,6 +57,16 @@ Meteor.startup(() => {
       tweetCollection.find().forEach(function(tweet) {
         if(tweet && tweet.value) {
           tweets = tweet.value.filter(t => t && t.retweeted == false);
+        }
+      });
+      return tweets;
+    },
+
+    getCountTweets: function() {
+      var tweets = [];
+      tweetCollection.find().forEach(function(tweet) {
+        if(tweet && tweet.value) {
+          tweets = tweet.value.filter(t => true);
         }
       });
       return tweets;

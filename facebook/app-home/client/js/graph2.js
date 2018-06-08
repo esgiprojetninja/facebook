@@ -16,14 +16,22 @@ Template.graph2.rendered = function() {
     } else {
         var data = [];
         var keys = Object.keys(resp);
+        var colors = [];
         keys.forEach(function(k) {
           data.push(resp[k]);
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          colors.push(color);
         });
         var data = {
           labels: keys,
           datasets: [{
               label: "Nombre d'utilisateur du même pays",
-              data: data
+              data: data,
+              backgroundColor: colors
           }],
           backgroundColor: "#04B4AE"
         };

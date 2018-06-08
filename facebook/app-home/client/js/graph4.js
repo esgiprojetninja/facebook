@@ -1,8 +1,6 @@
 import '../view/graph4.html';
 var Copy = require('copy-to-clipboard');
 
-const dataGouvApi = "https://data.enseignementsup-recherche.gouv.fr/api/records/1.0/search/?dataset=fr-esr-atlas_regional-effectifs-d-etudiants-inscrits&facet=rentree_universitaire&facet=niveau_geographique&facet=geo_nom&facet=rgp_formations_ou_etablissements&facet=secteur_de_l_etablissement&facet=sexe_de_l_etudiant&facet=a_des_effectifs_dut&facet=a_des_effectifs_ing&facet=donnees_diffusables&facet=niveau_geo&facet=geo_id&facet=reg_id&facet=aca_id&facet=dep_id&facet=uucr_id&apiKey=81e8ebadf857bcb9dbbc88c37a0dedbb775f60aab10f2c646d49b955";
-
 Template.graph4.events({
   'click .copy-iframe' : function(event) {
     event.preventDefault();
@@ -12,36 +10,42 @@ Template.graph4.events({
 
 Template.graph4.rendered = function() {
 
-  $.get(dataGouvApi, function(data) {
-    if(data) {
-
-      var secteur = data.facet_groups.find(facetGroup => facetGroup.name === 'niveau_geo');
-      var dataSets = [];
-
-      secteur.facets.forEach(function(element, key) {
-        dataSets.push(element.count);
+  Meteor.call('getCountTweets', function(error, resp) {
+    if(error) {
+        throw new Meteor.Error("Can't fetch data from db for all count");
+    } else {
+      var labels = [];
+      var data = [];
+      var colors = [];
+      resp.forEach(function(r, key) {
+        labels.push(key.toString());
+        data.push(r.retweet_count);
+          var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          colors.push(color);
       });
 
-      dataSets[0] = 60000;
-
+      console.log('label', labels);
+      console.log('data', data);
+      console.log('color', colors);
+      
       var data = {
-          labels: ['Développeur', 'Marketeur', 'Designer', 'Directeur artistique', 'Chef de projet'],
-          datasets: [{
-              label: "Nombre d'étudiant par secteur choisi",
-              data: dataSets
-          }],
-          backgroundColor: 'rgba(54, 162, 235, 1)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
+        labels: labels,
+        datasets: [{
+            label: "Nombre de retweet sur les tweets récupérés",
+            data: data,
+            backgroundColor: colors
+        }]
       };
 
       var myLineChart = new Chart(document.getElementById("graph4chart").getContext('2d'), {
-          type: 'radar',
+          type: 'bar',
           data: data,
           options: {}
       });
-    }else {
-      throw new Meteor.Error("dataGouvApi error");
     }
   });
 };

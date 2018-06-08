@@ -26,8 +26,8 @@ Template.graph3.rendered = function() {
               label: "Nombre mise en favoris des tweets sur la recherche 'love'",
               data: dataSets,
               backgroundColor: [
-                  'rgba(54, 162, 235, 0.5)',
-                  'rgba(255, 99, 132, 0.5)'
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)'
               ]
           }]
         };

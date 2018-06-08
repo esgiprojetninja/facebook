@@ -26,11 +26,11 @@ Template.graph1.rendered = function() {
       var data = {
         labels: ['Non-retweeted', 'Retweeted'],
         datasets: [{
-            label: "Nombre mise en favoris des tweets sur la recherche 'love'",
+            label: "Nombre de tweet qui sont des retweets",
             data: dataSets,
             backgroundColor: [
-                'rgba(54, 162, 235, 0.5)',
-                'rgba(255, 99, 132, 0.5)'
+              'rgba(255, 99, 132, 0.5)',
+              'rgba(54, 162, 235, 0.5)'
             ]
         }]
       };
