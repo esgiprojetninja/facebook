@@ -28,9 +28,12 @@ Template.graph4.rendered = function() {
           colors.push(color);
       });
 
-      console.log('label', labels);
-      console.log('data', data);
-      console.log('color', colors);
+      var length = 0;
+      data.forEach(function(d) {
+        length += d;
+      });
+
+      $('#len').html(length);
       
       var data = {
         labels: labels,
