@@ -11,6 +11,15 @@ Template.graph2.events({
 });
 
 Template.graph2.rendered = function() {
+  
+  Meteor.call('getFavoritedTweets', function(error, resp) {
+    if(error) {
+        throw new Meteor.Error("Can't fetch data from db for all count");
+    } else {
+        console.log('resp', resp);
+    }
+  });
+
 
   $.get(dataGouvApi, function(data) {
     if(data) {

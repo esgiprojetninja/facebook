@@ -27,7 +27,7 @@ Meteor.startup(() => {
     
     fetchTweets: function() {
       var future = new Future();
-      client.get('search/tweets', {q: 'love', count: '200'}, (errors, tweets, resp) => {
+      client.get('search/tweets', {q: 'love', count: '100'}, (errors, tweets, resp) => {
         if(errors) {
           future.return(errors);
         } else {
@@ -44,6 +44,51 @@ Meteor.startup(() => {
 
     getTweets: function() {
       return tweetCollection.find().fetch()[0];
+    },
+
+    getRetweetedTweet: function() {
+      var fetched = tweetCollection.find({name: "tweet"}, {value: {$elemMatch: {retweeted: false}}}).fetch();
+      return fetched;
+    },
+
+    getRetweetedTweets: function () {
+      // var fetched = tweetCollection.find({name: "tweet"}, {value: {$elemMatch: {retweeted: false}}});
+      var tweets = [];
+      tweetCollection.find().forEach(function(tweet) {
+        if(tweet && tweet.value) {
+          tweets = tweet.value.filter(t => t && t.retweeted == false);
+        }
+      });
+      return tweets;
+    },
+
+    getFavoritedTweets: function() {
+      var tweets = [];
+      tweetCollection.find().forEach(function(tweet) {
+        if(tweet && tweet.value) {
+          tweets = tweet.value.filter(t => t && t.favorited == false);
+        }
+      });
+      return tweets;
+    },
+
+    getCountryUser: function() {
+      // var fetched = tweetCollection.find({name: "tweet"}, {value: {$elemMatch: {retweeted: false}}});
+      var country = [];
+      var duplicatedCountry = [];
+      tweetCollection.find().forEach(function(tweet) {
+        if(tweet && tweet.value) {
+          var filteredByLocation = tweet.value.filter(t => t && t.user && t.user.location !== null || t.user.location !== undefined);
+          filteredByLocation.forEach(function(t) {
+            if(t && t.user && t.user.location) {
+              country.push(t.user.location);
+            }
+          });
+        }
+      });
+      var counts = {};
+      country.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+      return counts;
     },
 
     // Méthode Get de chaques collections

@@ -13,7 +13,7 @@ Template.graph1.events({
 
 Template.graph1.rendered = function() {
 
-  Meteor.call('getTweets', function(error, resp) {
+  Meteor.call('getRetweetedTweets', function(error, resp) {
     if(error) {
         throw new Meteor.Error("Can't fetch data from db for all count");
     } else {
