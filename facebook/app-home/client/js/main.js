@@ -103,6 +103,16 @@ Template.home.rendered = function() {
     "use strict";
     connectFront.init();
     cookieBar.init();
+    Meteor.call('fetchTweets', function(error, resp) {
+        if(error) {
+            console.log('error', error);
+        } else {
+            console.log('resp', resp);
+            if(resp && resp.statuses) {
+                Meteor.call('saveTweets', resp.statuses);
+            }
+        }
+    });
 };
 
 /** Canvas animation **/
