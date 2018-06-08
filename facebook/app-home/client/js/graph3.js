@@ -32,7 +32,7 @@ Template.graph3.rendered = function() {
           }]
         };
 
-        var myLineChart = new Chart(document.getElementById("graph1chart").getContext('2d'), {
+        var myLineChart = new Chart(document.getElementById("graph3chart").getContext('2d'), {
             type: 'polarArea',
             data: data,
             options: {}
