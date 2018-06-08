@@ -57,10 +57,13 @@ Template.graph1.rendered = function() {
         }
       }
 
+      console.log('label', labels);
+      console.log('data', dataSetsCount);
+
       var data = {
           labels: labels,
           datasets: [{
-              label: "Nombre d'étudiants rentrant dans l'enseignement supérieur",
+              label: "Nombre de retweet sur la recherche 'love'",
               data: dataSetsCount,
               backgroundColor: 'transparent',
               borderColor: '#04B4AE'
